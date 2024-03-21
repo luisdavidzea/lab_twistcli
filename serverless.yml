@@ -1,0 +1,16 @@
+trigger:
+- master
+
+pool:
+ name: Azure Pipelines
+
+steps:
+- task: prisma-cloud-compute-scan@3
+  displayName: prismaCloudScan
+  inputs:
+    scanType: 'serverless'
+    twistlockService: 'prisma-cloud'
+    artifact: './LabTwistCLI-dev-hello'
+- script: |
+    cat /path/to/scan/logs
+  displayName: 'Mostrar logs del escaneo'
